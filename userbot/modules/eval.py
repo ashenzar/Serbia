@@ -45,21 +45,21 @@ async def evaluate(query):
                     remove("output.txt")
                     return
                 await query.edit(
-                    "**Query: **\n`"
+                    "**> **\n`"
                     f"{expression}"
-                    "`\n**Result: **\n`"
+                    "`\n>> **\n`"
                     f"{evaluation}"
                     "`"
                 )
         else:
             await query.edit(
-                "**Query: **\n`"
+                "**> **\n`"
                 f"{expression}"
-                "`\n**Result: **\n`No Result Returned/False`"
+                "`\n**>> **\n`None or False`"
             )
     except Exception as err:
         await query.edit(
-            "**Query: **\n`" f"{expression}" "`\n**Exception: **\n" f"`{err}`"
+            "**> **\n`" f"{expression}" "`\n**!> **\n" f"`{err}`"
         )
 
     if BOTLOG:
@@ -120,11 +120,11 @@ execute. Use .help exec for an example.```"
             remove("output.txt")
             return
         await run_q.edit(
-            "**Query: **\n`" f"{codepre}" "`\n**Result: **\n`" f"{result}" "`"
+            "**> **\n`" f"{codepre}" "`\n**>> **\n`" f"{result}" "`"
         )
     else:
         await run_q.edit(
-            "**Query: **\n`" f"{codepre}" "`\n**Result: **\n`No Result Returned/False`"
+            "**> **\n`" f"{codepre}" "`\n**>> **\n`None or False`"
         )
 
     if BOTLOG:
