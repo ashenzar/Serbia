@@ -217,7 +217,7 @@ async def pipcheck(pip):
         else:
             await pip.edit("`Use .help system to see an example`")
 
-@register(outgoing=True, pattern="^.start$")
+@register(outgoing=True, pattern="^.alive$")
 async def amireallyalive(alive):
     """ For .start command, check if the bot is running.  """
     logo = ALIVE_LOGO
@@ -274,8 +274,8 @@ CMD_HELP.update({
 \nUsage: Shows the userbot version.\
 \n\n`.pip` <module(s)>\
 \nUsage: Does a search of pip modules(s).\
-\n\n`.start`\
-\nUsage: Type .start to see whether your bot is working or not.\
+\n\n`.alive`\
+\nUsage: Type .alive to see whether your bot is working or not.\
 \n\n`.aliveu` <text>\
 \nUsage: Changes the 'user' in alive to the text you want.\
 \n\n`.resetalive`\
