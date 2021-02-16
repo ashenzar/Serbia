@@ -7,7 +7,7 @@
 """ Userbot module which contains afk-related commands """
 
 from datetime import datetime
-import time
+import time as Time
 from random import choice, randint
 
 from telethon.events import StopPropagation
@@ -188,23 +188,27 @@ async def mention_afk(mention):
 
         if mention.sender_id not in USERS or chat_title not in USERS:
             if AFKREASON:
-                await mention.reply(f"Estoy AFK desde hace {afk_since}\
+                msg = await mention.reply(f"Estoy AFK desde hace {afk_since}\
                         \nRazón: `{AFKREASON}`")
             else:
-                await mention.reply(str(choice(AFKSTR)))
+                msg = await mention.reply(str(choice(AFKSTR)))
+
+            Time.sleep(3)
+            await msg.delete()
+
             if mention.sender_id is not None:
                 USERS.update({mention.sender_id: 1})
             else:
                 USERS.update({chat_title: 1})
         else:
             if AFKREASON:
-                await mention.reply(f"Sigo AFK desde hace {afk_since}\
+                msg = await mention.reply(f"Sigo AFK desde hace {afk_since}\
                         \nRazón: `{AFKREASON}`")
             else:
-                await mention.reply(str(choice(AFKSTR)))
+                msg = await mention.reply(str(choice(AFKSTR)))
 
-            time.sleep(3)
-            await mention.delete() # delete the message
+            Time.sleep(3)
+            await msg.delete()
 
             if mention.sender_id is not None:
                 USERS[mention.sender_id] += 1
@@ -269,18 +273,26 @@ async def afk_on_pm(sender):
                 afk_since = f"`{int(seconds)}s`"
             if sender.sender_id not in USERS:
                 if AFKREASON:
-                    await sender.reply(f"Estoy AFK desde hace {afk_since}\
+                    msg = await sender.reply(f"Estoy AFK desde hace {afk_since}\
                         \nRazón: `{AFKREASON}`")
                 else:
-                    await sender.reply(str(choice(AFKSTR)))
+                    msg = await sender.reply(str(choice(AFKSTR)))
+
+                Time.sleep(3)
+                await msg.delete()
+
                 USERS.update({sender.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif apprv and sender.sender_id in USERS:
                 if AFKREASON:
-                    await sender.reply(f"Sigo AFK desde hace {afk_since}\
+                    msg = await sender.reply(f"Sigo AFK desde hace {afk_since}\
                         \nRazón: `{AFKREASON}`")
                 else:
-                    await sender.reply(str(choice(AFKSTR)))
+                    msg = await sender.reply(str(choice(AFKSTR)))
+
+                Time.sleep(3)
+                await msg.delete()
+
                 USERS[sender.sender_id] = USERS[sender.sender_id] + 1
                 COUNT_MSG = COUNT_MSG + 1
 
