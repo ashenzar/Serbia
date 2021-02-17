@@ -290,6 +290,21 @@ async def scam(results, lim):
 
     return imglinks
 
+
+@register(outgoing=True, pattern="^.fw$")
+async def _(event):
+    if event.fwd_from:
+        return
+
+    if event.reply_to_msg_id:
+        reply_message = await event.get_reply_message()
+    else:
+        await event.edit("Responde a un mensaje para reenviarlo.")
+
+    await event.delete()
+    await bot.forward_messages(event.chat_id, reply_message)
+
+
 CMD_HELP.update({
     "misc":
     "`.random` <item1> <item2> ... <itemN>\
@@ -319,7 +334,9 @@ CMD_HELP.update({
 \n\n`.reverse`\
 \nUsage: Reply to a pic/sticker to revers-search it on Google Images.\
 \n\n: `.poll`\
-\nUsage:If you doesnt give any input it sends a default poll. if you like customize it then use this syntax:\
+\nUsage: If you doesnt give any input it sends a default poll. if you like customize it then use this syntax:\
 \n `.poll question ; option 1; option2 ;`\
-\n ';' this seperates the each option and question."
+\n ';' this seperates the each option and question.\
+\n\n: `.fw`\
+\nUsage: Reply to a message to forward it."
 })
