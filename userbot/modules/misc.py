@@ -298,8 +298,6 @@ async def _(event):
 
     if event.reply_to_msg_id:
         reply_message = await event.get_reply_message()
-    else:
-        await event.edit("Responde a un mensaje para reenviarlo.")
 
     await event.delete()
     await bot.forward_messages(event.chat_id, reply_message)
