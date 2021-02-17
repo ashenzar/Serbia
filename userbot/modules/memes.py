@@ -1211,7 +1211,7 @@ async def rol(event):
             "Ramera":"💋",
             "Sepulturero":"☠️",
             "Cupido":"🏹",
-            "Fastasma":"👻",
+            "Fantasma":"👻",
             "Curandero":"🌟",
             "Dete":"🕵️",
             "Herbo":"🍃",
