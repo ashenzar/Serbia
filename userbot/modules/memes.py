@@ -48,7 +48,6 @@ METOOSTR = [
 ]
 
 ZALG_LIST = [[
-    "̖",
     " ̗",
     " ̘",
     " ̙",
@@ -1193,6 +1192,84 @@ async def moon(event):
         return
 
 
+@register(outgoing=True, pattern="^.rol (.*)")
+async def rol(event):
+    text = event.pattern_match.group(1)
+    role = text.split()[1]
+    roles = {
+            "CC": "💂",
+            "Aldeano":"👱",
+            "BP":"�",
+            "Angel":"👼",
+            "Aprendiz":"🙇",
+            "Borracho":"🍻",
+            "Beauty":"💅",
+            "CN":"🌙",
+            "Caza":"🎯",
+            "Arenero":"💤",
+            "Obs":"👁",
+            "Ramera":"💋",
+            "Sepulturero":"☠️",
+            "Cupido":"🏹",
+            "Fastasma":"👻",
+            "Curandero":"🌟",
+            "Dete":"🕵️",
+            "Herbo":"🍃",
+            "Herrero":"⚒",
+            "G":"🛡",
+            "Sabia":"📚",
+            "Ninja":"💨",
+            "Tonto":"�",
+            "Necio":"🃏",
+            "Oraculo":"🌀",
+            "Paci":"☮️",
+            "Pan":"🍞",
+            "Alcalde":"🎖",
+            "Profeta":"�",
+            "Princesa":"👑",
+            "Torpe":"🤕",
+            "Sonambulo":"😴",
+            "Vid":"👳",
+            "Vigia":"🔭",
+            "Sheriff":"�",
+            "Justi":"🔫",
+            "Alfa":"⚡️",
+            "Lobo":"🐺",
+            "Lobezno":"🐶",
+            "Husmeador":"🐾",
+            "Voraz":"🐺🍽",
+            "Veloz":"🐺💨",
+            "Aullador":"🐺🌕",
+            "Rabioso":"🐺�",
+            "Lycan":"🐺🌝",
+            "Fuegos":"🐺🔥",
+            "Nieves":"🐺❄️",
+            "Impostor":"❌",
+            "Hechi":"🔮",
+            "Maldito":"😾",
+            "Niño":"👶",
+            "Traidor":"🖕",
+            "Titi":"🎎",
+            "SK":"🔪",
+            "Dopp":"🎭",
+            "Necro":"⚰️",
+            "Vete":"👺",
+            "Super":"⛺️",
+            "Vampiro":"�",
+            "Flauta":"🎺",
+            "Mason":"👷‍♂️",
+            "GB":"👱‍♂️🌚",
+            "Poli":"👮‍♂️",
+            "Quimico":"👨‍🔬",
+            "Bombero":"👩‍🚒"
+            }
+
+    try:
+        await event.edit(text + roles[role])
+    except BaseException:
+        return
+
+
 @register(outgoing=True, pattern="^.clock$")
 async def clock(event):
     deq = deque(list("🕙🕘🕗🕖🕕🕔🕓🕒🕑🕐🕛"))
@@ -1653,5 +1730,7 @@ CMD_HELP.update({
 \n\n`.scam` <action> <time>\
 \n[Available Actions: (typing, contact, game, location, voice, round, video, photo, document, cancel)]\
 \nUsage: Create fake chat actions, for fun. (Default action: typing)\
+\n\n`.rol <user> <rol>`\
+\nUsage: Show the emoji of a werewolf rol.\
 \n\n\nThanks to 🅱️ottom🅱️ext🅱️ot (@NotAMemeBot) for some of these."
 })
