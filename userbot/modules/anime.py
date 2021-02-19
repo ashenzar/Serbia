@@ -666,5 +666,5 @@ CMD_HELP.update(
     \nUsage: Search anime.\
     \n\n.smanga <manga>\
     \nUsage: Search manga.\
-    \n\n.whatanime Reply with media.\
+    \n\n.whatanime <media reply>\
     \nUsage: Find anime from media file."})
