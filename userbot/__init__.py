@@ -8,6 +8,8 @@
 import os
 import re
 import time
+import requests
+
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
@@ -18,7 +20,6 @@ from pySmartDL import SmartDL
 from pymongo import MongoClient
 from redis import StrictRedis
 from dotenv import load_dotenv
-from requests import get
 from telethon.sync import TelegramClient, custom, events
 from telethon.sessions import StringSession
 
@@ -316,6 +317,8 @@ CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
 
+# AFK stuff
+AFK_MEDIA = os.environ.get("AFK_MEDIA", None)
 
 def paginate_help(page_number, loaded_modules, prefix):
     number_of_rows = 5
