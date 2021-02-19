@@ -88,3 +88,4 @@ vcsi
 lottie
 wand
 colour
+pendulum
