@@ -652,19 +652,19 @@ def is_gif(file):
 
 CMD_HELP.update(
     {
-        "anime": ".anime <anime>\
+        "anime": "`.anime` <anime>\
     \nUsage: Returns with Anime information.\
-    \n\n.manga <manga name>\
+    \n\n`.manga` <manga name>\
     \nUsage: Returns with the Manga information.\
-    \n\n.akaizoku or .akayo <anime name>\
+    \n\n`.akaizoku` or `.akayo` <anime name>\
     \nUsage: Returns with the Anime Download link.\
-    \n\n.char <character name>\
+    \n\n`.char` <character name>\
     \nUsage: Return with character information.\
-    \n\n.upcoming\
+    \n\n`.upcoming`\
     \nUsage: Returns with Upcoming Anime information.\
-    \n\n.scanime <anime> or .sanime <anime>\
+    \n\n`.scanime` <anime> or `.sanime` <anime>\
     \nUsage: Search anime.\
-    \n\n.smanga <manga>\
+    \n\n`.smanga` <manga>\
     \nUsage: Search manga.\
-    \n\n.whatanime <media reply>\
+    \n\n`.whatanime` <media reply>\
     \nUsage: Find anime from media file."})
