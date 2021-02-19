@@ -6,14 +6,15 @@
 
 """ Userbot module which contains afk-related commands """
 
-from datetime import datetime
 import time as Time
+
+from datetime import datetime
 from random import choice, randint
 
 from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
-from userbot import (AFKREASON, COUNT_MSG, CMD_HELP, ISAFK, BOTLOG,
+from userbot import (AFKREASON, AFK_MEDIA, COUNT_MSG, CMD_HELP, ISAFK, BOTLOG,
                      BOTLOG_CHATID, USERS, PM_AUTO_BAN, bot)
 from userbot.events import register
 
@@ -72,9 +73,9 @@ async def set_afk(afk_e):
     start_1 = datetime.now()
     afk_start = start_1.replace(microsecond=0)
     if string:
-        AFKREASON = string
+        AFKREASON = string + f"[‎]({AFK_MEDIA})"
         await afk_e.edit(f"Me voy AFK\
-        \nRazón: `{string}`")
+        \nRazón: {AFKREASON}")
     else:
         await afk_e.edit("Me voy AFK")
     if user.last_name:
@@ -189,7 +190,7 @@ async def mention_afk(mention):
         if mention.sender_id not in USERS or chat_title not in USERS:
             if AFKREASON:
                 msg = await mention.reply(f"Estoy AFK desde hace {afk_since}\
-                        \nRazón: `{AFKREASON}`")
+                        \nRazón: {AFKREASON}")
             else:
                 msg = await mention.reply(str(choice(AFKSTR)))
 
@@ -203,7 +204,7 @@ async def mention_afk(mention):
         else:
             if AFKREASON:
                 msg = await mention.reply(f"Sigo AFK desde hace {afk_since}\
-                        \nRazón: `{AFKREASON}`")
+                        \nRazón: {AFKREASON}")
             else:
                 msg = await mention.reply(str(choice(AFKSTR)))
 
@@ -274,7 +275,7 @@ async def afk_on_pm(sender):
             if sender.sender_id not in USERS:
                 if AFKREASON:
                     msg = await sender.reply(f"Estoy AFK desde hace {afk_since}\
-                        \nRazón: `{AFKREASON}`")
+                        \nRazón: {AFKREASON}")
                 else:
                     msg = await sender.reply(str(choice(AFKSTR)))
 
@@ -286,7 +287,7 @@ async def afk_on_pm(sender):
             elif apprv and sender.sender_id in USERS:
                 if AFKREASON:
                     msg = await sender.reply(f"Sigo AFK desde hace {afk_since}\
-                        \nRazón: `{AFKREASON}`")
+                        \nRazón: {AFKREASON}")
                 else:
                     msg = await sender.reply(str(choice(AFKSTR)))
 
