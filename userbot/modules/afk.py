@@ -72,18 +72,25 @@ async def set_afk(afk_e):
     afk_end = {}
     start_1 = datetime.now()
     afk_start = start_1.replace(microsecond=0)
-    if string:
-        AFKREASON = string + f"[‎]({AFK_MEDIA})"
-        await afk_e.edit(f"Me voy AFK\
-        \nRazón: {AFKREASON}")
+    global image
+    if AFK_MEDIA is not None:
+        image = f"[‎]({AFK_MEDIA})"
     else:
-        await afk_e.edit("Me voy AFK")
+        image = ""
+
+    if string:
+        AFKREASON = string
+        afk_r = await afk_e.respond(f"Me voy AFK\
+        \nRazón: {AFKREASON}{image}")
+    else:
+        await afk_e.respond("Me voy AFK")
     if user.last_name:
         await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=user.last_name + " [ AFK ]"))
     else:
         await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=" [ AFK ]"))
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nTe fuiste AFK.")
+    await afk_e.delete()
     ISAFK = True
     afk_time = datetime.now()  # pylint:disable=E0602
     raise StopPropagation
@@ -190,7 +197,7 @@ async def mention_afk(mention):
         if mention.sender_id not in USERS or chat_title not in USERS:
             if AFKREASON:
                 msg = await mention.reply(f"Estoy AFK desde hace {afk_since}\
-                        \nRazón: {AFKREASON}")
+                        \nRazón: {AFKREASON}{image}")
             else:
                 msg = await mention.reply(str(choice(AFKSTR)))
 
@@ -204,7 +211,7 @@ async def mention_afk(mention):
         else:
             if AFKREASON:
                 msg = await mention.reply(f"Sigo AFK desde hace {afk_since}\
-                        \nRazón: {AFKREASON}")
+                        \nRazón: {AFKREASON}{image}")
             else:
                 msg = await mention.reply(str(choice(AFKSTR)))
 
@@ -275,7 +282,7 @@ async def afk_on_pm(sender):
             if sender.sender_id not in USERS:
                 if AFKREASON:
                     msg = await sender.reply(f"Estoy AFK desde hace {afk_since}\
-                        \nRazón: {AFKREASON}")
+                        \nRazón: {AFKREASON}{image}")
                 else:
                     msg = await sender.reply(str(choice(AFKSTR)))
 
@@ -287,7 +294,7 @@ async def afk_on_pm(sender):
             elif apprv and sender.sender_id in USERS:
                 if AFKREASON:
                     msg = await sender.reply(f"Sigo AFK desde hace {afk_since}\
-                        \nRazón: {AFKREASON}")
+                        \nRazón: {AFKREASON}{image}")
                 else:
                     msg = await sender.reply(str(choice(AFKSTR)))
 
