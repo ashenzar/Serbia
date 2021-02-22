@@ -201,7 +201,7 @@ async def mention_afk(mention):
             else:
                 msg = await mention.reply(str(choice(AFKSTR)))
 
-            Time.sleep(3)
+            Time.sleep(10)
             await msg.delete()
 
             if mention.sender_id is not None:
@@ -215,7 +215,7 @@ async def mention_afk(mention):
             else:
                 msg = await mention.reply(str(choice(AFKSTR)))
 
-            Time.sleep(3)
+            Time.sleep(10)
             await msg.delete()
 
             if mention.sender_id is not None:
@@ -286,7 +286,7 @@ async def afk_on_pm(sender):
                 else:
                     msg = await sender.reply(str(choice(AFKSTR)))
 
-                Time.sleep(3)
+                Time.sleep(10)
                 await msg.delete()
 
                 USERS.update({sender.sender_id: 1})
@@ -298,7 +298,7 @@ async def afk_on_pm(sender):
                 else:
                     msg = await sender.reply(str(choice(AFKSTR)))
 
-                Time.sleep(3)
+                Time.sleep(10)
                 await msg.delete()
 
                 USERS[sender.sender_id] = USERS[sender.sender_id] + 1
